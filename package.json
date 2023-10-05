@@ -1,0 +1,29 @@
+{
+  "name": "blogy",
+  "version": "1.0.0",
+  "description": "from second test",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "npx prisma migrate": "npx prisma migrate dev --schema=./database/prisma/schema.prisma"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^3.0.1",
+    "prisma": "^5.4.1"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.4.1",
+    "bcryptjs": "^2.4.3",
+    "connect-flash": "^0.1.1",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "express-ejs-layouts": "^2.5.1",
+    "express-session": "^1.17.3",
+    "passport": "^0.6.0",
+    "passport-local": "^1.0.0"
+  }
+}

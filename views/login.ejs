@@ -1,0 +1,25 @@
+<div class="row mt-5 mb-5">
+    <div class="col-md-6 m-auto">
+        <div class="card card-body">
+            <h1 class="text-center mb-3">
+                <i class="fas fa-sign-in-alt"></i> Login
+            </h1>
+            <%- include ("./partials/messages"); %>
+            <form action="/users/register" method="POST">
+                <fieldset>
+                    <div class="form-group">
+                        <label for="email_input" class="form-label mt-4">Email address</label>
+                        <input type="email" class="form-control" id="email_input" aria-describedby="emailHelp" placeholder="Enter email">
+                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="password_input" class="form-label mt-4">Password</label>
+                        <input type="password" class="form-control" id="password_input" placeholder="Password" autocomplete="off">
+                    </div>
+                    <button type="submit" class="btn btn-primary mt-3">Submit</button>
+                </fieldset>
+            </form>
+            <p class="lead mt-4">Don't Have An Account? <a href="/auth/register">Register</a></p>
+        </div>
+    </div>
+</div>

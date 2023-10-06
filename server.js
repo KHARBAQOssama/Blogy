@@ -15,11 +15,10 @@ app.set('view engine', 'ejs')
 app.use(express.urlencoded({ extended: false }));
 
 //expression session middleware
-
 app.use(
     session({
         secret: 'secret',
-        resave: true,
+        resave: false,
         saveUninitialized: true
     })
 );
@@ -30,8 +29,9 @@ app.use(flash())
 // global variable
 
 app.use((req, res, next)=>{
-    res.locals.success_message = req.flash('success_msg')
-    res.locals.error_message = req.flash('error_msg')
+    res.locals.success_message = req.flash('success_message')
+    res.locals.error_message = req.flash('error_message')
+    next()
 })
 
 //ROUTES

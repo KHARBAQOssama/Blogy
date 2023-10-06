@@ -57,7 +57,6 @@ router.post('/register', async(req, res)=>{
             const saltRounds = 10;
             const salt = await bcrypt.genSalt(saltRounds);
             const hashedPassword = await bcrypt.hash(password, salt);
-            console.log(hashedPassword)
             const newUser = await prisma.user.create({
                 data: {
                     full_name: name,
@@ -66,7 +65,7 @@ router.post('/register', async(req, res)=>{
                     isAuthor: isAuthor === 'true',
                 }
             })
-            req.flash('success_msg', "You are registered")
+            req.flash('success_message', "You are registered")
             res.redirect('/auth/login');
         }
     }

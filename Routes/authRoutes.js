@@ -3,6 +3,8 @@ const {PrismaClient} = require("@prisma/client");
 const router = express.Router()
 const prisma = new PrismaClient()
 const bcrypt = require('bcryptjs')
+const passport = require('passport')
+const {ensureAuthentication} = require("../Middlewares/authMiddleware");
 
 router.get('/register', (req, res)=>{
     res.render("register")
@@ -10,9 +12,7 @@ router.get('/register', (req, res)=>{
 router.get('/login', (req, res)=>{
     res.render("login")
 })
-router.get('/logout', (req, res)=>{
-    res.send("Logout Page")
-})
+
 
 router.post('/register', async(req, res)=>{
     let errors = []
@@ -69,6 +69,23 @@ router.post('/register', async(req, res)=>{
             res.redirect('/auth/login');
         }
     }
+})
+
+router.post('/login',(req, res,next)=>{
+    passport.authenticate('local', {
+        successRedirect: '/dashboard',
+        failureRedirect: '/auth/login',
+        failureFlash: true
+    })(req,res,next)
+})
+
+
+router.get('/logout', ensureAuthentication,(req, res)=>{
+    req.logOut(()=>{
+        req.flash("success_message", "Logged out")
+        res.redirect('/auth/login')
+    });
+
 })
 
 module.exports = router

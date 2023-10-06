@@ -5,6 +5,8 @@ const flash = require('connect-flash')
 const session = require('express-session')
 const viewRoutes = require('./Routes/viewRoutes')
 const authRoutes = require('./Routes/authRoutes')
+const passport = require('passport')
+require('./Config/passport')(passport)
 //App
 
 const app = express();
@@ -23,6 +25,9 @@ app.use(
     })
 );
 
+app.use(passport.initialize())
+app.use(passport.session())
+
 // connect flash
 app.use(flash())
 
@@ -31,6 +36,7 @@ app.use(flash())
 app.use((req, res, next)=>{
     res.locals.success_message = req.flash('success_message')
     res.locals.error_message = req.flash('error_message')
+    res.locals.error= req.flash('error')
     next()
 })
 

@@ -4,7 +4,7 @@
   "description": "from second test",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon server.js",
     "start": "node server.js",
     "prisma:migrate": "npx prisma migrate dev --schema=./database/prisma/schema.prisma"
   },
@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "dotenv": "^16.3.1",
     "nodemon": "^3.0.1",
     "prisma": "^5.4.1"
   },

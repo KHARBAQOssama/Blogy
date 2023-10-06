@@ -28,6 +28,8 @@ model Article {
   author    User      @relation(fields: [authorId], references: [id])
   authorId  Int
   comments  Comment[]
+  Categories    Category      @relation(fields: [Categoryid], references: [id])
+  Categoryid  Int
 }
 
 model Comment {
@@ -36,4 +38,12 @@ model Comment {
   createdAt DateTime @default(now())
   article   Article  @relation(fields: [articleId], references: [id])
   articleId Int
+}
+
+model Category {
+  id        Int      @id @default(autoincrement())
+  name      String
+  createdAt DateTime @default(now())
+  Articles  Article[]
+
 }

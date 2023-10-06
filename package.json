@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
-    "npx prisma migrate": "npx prisma migrate dev --schema=./database/prisma/schema.prisma"
+    "prisma:migrate": "npx prisma migrate dev --schema=./database/prisma/schema.prisma"
   },
   "keywords": [],
   "author": "",

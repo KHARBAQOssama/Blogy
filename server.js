@@ -11,6 +11,8 @@ require('./Config/passport')(passport)
 //App
 
 const app = express();
+
+app.use(express.static('public'));
 //EJS
 app.use(expressLayout)
 app.set('view engine', 'ejs')

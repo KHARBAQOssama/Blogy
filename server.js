@@ -5,6 +5,7 @@ const flash = require('connect-flash')
 const session = require('express-session')
 const viewRoutes = require('./Routes/viewRoutes')
 const authRoutes = require('./Routes/authRoutes')
+const articleRoutes = require('./Routes/articleRoutes')
 const passport = require('passport')
 require('./Config/passport')(passport)
 //App
@@ -43,6 +44,7 @@ app.use((req, res, next)=>{
 //ROUTES
 app.use('/', viewRoutes)
 app.use('/auth', authRoutes)
+app.use('/article', articleRoutes)
 
 const PORT = process.env.PORT
 app.listen(PORT, ()=>{

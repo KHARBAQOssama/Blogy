@@ -18,18 +18,20 @@ model User {
   isAuthor  Boolean   @default(false)
   image     String?
   articles  Article[]
+  comments  Comment[]
 }
 
 model Article {
   id        Int       @id @default(autoincrement())
   title     String
-  content   String
+  content   Json     
+  cover     String 
   createdAt DateTime  @default(now())
   author    User      @relation(fields: [authorId], references: [id])
   authorId  Int
   comments  Comment[]
-  Categories    Category      @relation(fields: [Categoryid], references: [id])
-  Categoryid  Int
+  Category    Category      @relation(fields: [CategoryId], references: [id])
+  CategoryId  Int
 }
 
 model Comment {
@@ -38,6 +40,8 @@ model Comment {
   createdAt DateTime @default(now())
   article   Article  @relation(fields: [articleId], references: [id])
   articleId Int
+  user   User  @relation(fields: [userId], references: [id])
+  userId Int
 }
 
 model Category {

@@ -11,6 +11,26 @@ class Article {
         this.CategoryId = CategoryId;  
     }
 
+    async get(){
+        let articles;
+        articles = await prisma.article.findMany(
+            {
+                skip: 0, 
+                take: 6,
+                // orderBy: {
+                //   comments: {
+                //     _count: 'desc'
+                //   }
+                // },
+                include: {
+                  author: true,
+                  Category:true,
+                }
+            }
+            )
+            console.log(articles);
+        return articles;
+    }
     
     async save(){
         let article = await prisma.article.create({data: {

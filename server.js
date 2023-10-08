@@ -6,6 +6,7 @@ const session = require('express-session')
 const viewRoutes = require('./Routes/viewRoutes')
 const authRoutes = require('./Routes/authRoutes')
 const articleRoutes = require('./Routes/articleRoutes')
+const profileRoutes = require('./Routes/profileRoutes')
 const passport = require('passport')
 require('./Config/passport')(passport)
 //App
@@ -17,6 +18,7 @@ const app = express();
 
 app.use(express.static('public'));
 app.use('/js', express.static(__dirname + '/public/assets/js'))
+
 //EJS
 app.use(expressLayout)
 app.set('view engine', 'ejs')
@@ -51,6 +53,7 @@ app.use((req, res, next)=>{
 app.use('/', viewRoutes)
 app.use('/auth', authRoutes)
 app.use('/article', articleRoutes)
+app.use('/profile', profileRoutes)
 
 const PORT = process.env.PORT
 app.listen(PORT, ()=>{

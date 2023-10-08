@@ -11,17 +11,12 @@ class Article {
         this.CategoryId = CategoryId;  
     }
 
-    async get(){
+    async get(page = null){
         let articles;
         articles = await prisma.article.findMany(
             {
-                skip: 0, 
-                take: 6,
-                // orderBy: {
-                //   comments: {
-                //     _count: 'desc'
-                //   }
-                // },
+                skip: page ? (page-1)*9 : 0, 
+                take: page ? 9 : 6,
                 include: {
                   author: true,
                   Category:true,
@@ -42,6 +37,11 @@ class Article {
             CategoryId :this.CategoryId,
         }})
         return article;
+    }
+
+    async getCount(){
+        const count = await prisma.article.count();
+        return count;
     }
 }
 

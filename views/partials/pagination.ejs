@@ -1,0 +1,15 @@
+<section class="d-flex justify-content-center align-items-center p-3 gap-3 pagination">
+    <a href="/articles?page=<%= pagination.page-1 %>" class="d-flex justify-content-center align-items-center p-2 px-3 border-1 bg- fw-bold border-black<% if(pagination.page == 1){%><%= ' d-none'%><%}%>" ><</a>
+    <% const pageCount = Math.ceil(pagination.count / 9); %>
+    <% if(pageCount <= 4){
+        for(let i = 1;i<=pageCount;i++){%>
+            <a href="/articles?page=<%= i %>" class="d-flex justify-content-center align-items-center p-2 px-3 border-1 bg- fw-bold border-black <% if(i == pagination.page){%><%= 'active'%><%}%>"><%= i %></a>
+    <%}}else{
+        for(let i = pagination.page-1; i <= pagination.page+1 && i<= pageCount-1;i++){%>
+            <a href="/articles?page=<%= i %>" class="d-flex justify-content-center align-items-center p-2 px-3 border-1 bg- fw-bold border-black <% if(i == pagination.page){%><%= 'active'%><%}%>"><%= i %></a>
+    <%}%>
+            ...
+            <a href="/articles?page=<%= pageCount %>" class="d-flex justify-content-center align-items-center p-2 px-3 border-1 bg- fw-bold border-black <% if(pageCount == pagination.page){%><%= 'active'%><%}%>"><%= pageCount %></a>
+    <%} %>
+    <a href="/articles?page=<%= pagination.page+1 %>" class="d-flex justify-content-center align-items-center p-2 px-3 border-1 bg- fw-bold border-black <% if(pagination.page == pageCount){%><%= ' d-none'%><%}%>">></a>
+</section>

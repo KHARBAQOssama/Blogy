@@ -7,6 +7,9 @@ const viewController = new ViewController();
 router.get('/', (req, res)=>{
     viewController.toHomePage(req,res)
 })
+router.get('/articles', (req, res)=>{
+    viewController.toArticlesPage(req,res)
+})
 router.get('/', (req, res)=>{
     res.render('welcome')
 })

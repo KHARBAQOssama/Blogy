@@ -92,3 +92,17 @@ section{
 a{
     text-decoration: none;
 }
+nav.dark{
+    background-color: rgb(0,0,0,0.5);
+}
+.pagination a{
+    border: 2px solid black;
+}
+.pagination .active{
+    background-color: black;
+    color: white;
+}
+
+input,textarea{
+    background-color: rgb(248, 248, 248);
+}

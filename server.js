@@ -5,12 +5,20 @@ const flash = require('connect-flash')
 const session = require('express-session')
 const viewRoutes = require('./Routes/viewRoutes')
 const authRoutes = require('./Routes/authRoutes')
-//App
+const categoryRoutes = require('./Routes/categoryRoutes');
+const bodyParser = require('body-parser');
 
 const app = express();
+//App
+
+
+app.use(bodyParser.urlencoded({ extended: true }));
+
+
 //EJS
 app.use(expressLayout)
 app.set('view engine', 'ejs')
+app.use('/categories', categoryRoutes);
 // Body Parser
 app.use(express.urlencoded({ extended: false }));
 
@@ -38,7 +46,7 @@ app.use((req, res, next)=>{
 app.use('/', viewRoutes)
 app.use('/auth', authRoutes)
 
-const PORT = process.env.PORT
-app.listen(PORT, ()=>{
-    console.log(`listening to port ${PORT} ...`)
+
+app.listen(3000, ()=>{
+    console.log("yeeep");
 })

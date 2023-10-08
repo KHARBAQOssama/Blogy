@@ -13,7 +13,7 @@ class Article {
 
     
     async save(){
-        let article = await this.prisma.article.create({data: {
+        let article = await prisma.article.create({data: {
             title :this.title,
             content :this.content,    
             cover :this.cover,

@@ -1,12 +1,27 @@
-const Article = require('../Models/Article')
+const Article = require('../Models/Article');
+const { storeImageGetPath } = require('../utils/tools');
 
 class ArticleController {
     async create(req,res){
-        console.log(req);
-        return;
-        let article = new Article(req.title,req.content,req.cover,req.createdAt,req.authorId,req.CategoryId);
+        let newArticle = req.body.article;
+        if(newArticle.new_category){
+            // Add category Process
+            newArticle.category = 1;
+        }
+        if(newArticle.cover){
+            newArticle.cover = await storeImageGetPath(newArticle.cover)
+        }
+        await Promise.all(newArticle.items.map(async (item) => {
+            if (item.type === 'image') {
+              item.content = await storeImageGetPath(item.content);
+            }
+        }));
+        newArticle.items = JSON.stringify(newArticle.items);
+        let article = new Article(newArticle.title,newArticle.items,newArticle.cover,new Date(),1,newArticle.category);
         article = await article.save();
-        res.render('index');
+        console.log(article);
+        res.status(201).json({ message: `Article stored successfully` });
+        // res.render('index');
     }
 }
 

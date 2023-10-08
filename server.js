@@ -10,13 +10,19 @@ const passport = require('passport')
 require('./Config/passport')(passport)
 //App
 
+
+
+
 const app = express();
+
+app.use(express.static('public'));
+app.use('/js', express.static(__dirname + '/public/assets/js'))
 //EJS
 app.use(expressLayout)
 app.set('view engine', 'ejs')
 // Body Parser
-app.use(express.urlencoded({ extended: false }));
-
+app.use(express.urlencoded({extended: false }));
+app.use(express.json({limit:'10mb'}));
 //expression session middleware
 app.use(
     session({

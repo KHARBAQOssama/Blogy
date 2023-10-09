@@ -3,3 +3,60 @@
 
 <a href="/auth/logout" class="btn btn-outline-dark">Logout</a>
 <a href="/profile/pedit" class="btn btn-outline-dark">Edit Profile</a>
+<button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+    Delete
+</button>
+<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasExampleLabel">Offcanvas</h5>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <div>
+            <ul>
+                <li><%= user.full_name %></li>
+                <li><%= user.email %></li>
+                <li>
+                    <img src="/images/<%= user.image ? user.image : 'default-img.png' %>" alt="">
+                </li>
+            </ul>
+        </div>
+        <div class="dropdown mt-3">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                Actions
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><a class="dropdown-item" href="/profile/pedit" class="btn btn-outline-dark">Edit Profile</a></li>
+                <li><a class="dropdown-item btn btn-primary" data-bs-toggle="modal" href="#" data-bs-target="#exampleModal">
+                    Delete Account
+                </a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="exampleModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Delete Account</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"></span>
+                </button>
+            </div>
+            <form action="/profile/delete" method="POST">
+                <div class="modal-body">
+                    <input type="text" name="userId" value="<%= user.id%>">
+                    <p>Are you sure You want to delete you Account ?
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,14 @@
+<a href="/article/<%= article.id %>" class="sideArticle d-flex flex-column gap-2 p-2 col-3 flex-grow-1" style="background-image: url('/img<%= article.cover %>'); min-width: max-content;">
+        <h5 class="fw-bold title mb-auto text-white text-shadow"><%= article.title %></h5>
+        <div class="d-flex flex-column gap-1" style="width: max-content;">
+            <div class="d-flex align-items-center gap-1 author">
+                <div class="rounded-circle overflow-hidden d-flex justify-content-center align-items-center image" style="height: 30px; width: 30px;">
+                    <img src="<%= article.author.image %>"  alt="">
+                </div>
+                <span class="text-uppercase name text-white text-shadow">
+                    <%= article.author.full_name %>
+                </span>
+            </div>
+            <span class="fw-light text-white text-shadow"><%= article.createdAt %></span>
+        </div>
+</a> 

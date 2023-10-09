@@ -1,0 +1,30 @@
+*{
+    padding: 0;
+    margin: 0;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    
+}
+body{
+    background-color: rgb(255, 255, 255);
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70vh;
+    flex-direction: column;
+}
+.title{
+    display: flex;
+    justify-content: center;
+    margin: 4rem;
+}
+.Category-button{
+    border-radius: 4px;
+    padding:6px;
+}
+.Category-form input{
+    padding:6px ;
+
+}

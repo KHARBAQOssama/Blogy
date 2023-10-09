@@ -13,7 +13,8 @@ const app = express();
 
 
 app.use(bodyParser.urlencoded({ extended: true }));
-
+app.use(express.static('public'));
+app.use('/css', express.static(__dirname + '/public/assets/css'))
 
 //EJS
 app.use(expressLayout)

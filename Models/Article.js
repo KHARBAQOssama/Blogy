@@ -23,7 +23,6 @@ class Article {
                 }
             }
             )
-            console.log(articles);
         return articles;
     }
     
@@ -42,6 +41,35 @@ class Article {
     async getCount(){
         const count = await prisma.article.count();
         return count;
+    }
+
+    async getArticle(id){
+        return await prisma.article.findUnique({
+            where : {
+                id : id
+            },
+            include : {
+                comments : true,
+                author:true,
+                Category:true
+            }
+        })
+    }
+
+    async getSideArticles(categoryId){
+        let articles;
+        articles = await prisma.article.findMany(
+            {
+                take: 5,
+                include: {
+                  author: true,
+                },
+                where:{
+                    CategoryId : categoryId
+                }
+            }
+            )
+        return articles;
     }
 }
 

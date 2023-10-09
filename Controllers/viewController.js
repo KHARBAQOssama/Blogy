@@ -10,13 +10,8 @@ class ViewController {
             article.createdAt = formatDate(article.createdAt);
         })
 
-        if (req.isAuthenticated()) {
-            const user = req.user;
-            res.render('home', { user : user, articles : articles });
-        }else{
-            res.render('home',{ user : null , articles : articles})
-        }
-
+        let user = req.isAuthenticated() ? req.user : null;
+        res.render('home', { user : user, articles : articles });
     }
 
     async toArticlesPage(req,res){
@@ -35,12 +30,25 @@ class ViewController {
         articles.forEach(article=>{
             article.createdAt = formatDate(article.createdAt);
         })
-        if (req.isAuthenticated()) {
-            const user = req.user;
-            res.render('articles', { user : user, articles : articles, pagination : pagination });
-        }else{
-            res.render('articles',{ user : null , articles : articles, pagination : pagination})
-        }
+        
+        let user = req.isAuthenticated() ? req.user : null;
+        res.render('articles', { user : user, articles : articles, pagination : pagination });
+    }
+
+
+    async toArticleDetails(req,res){
+        let articleDetail = await article.getArticle(parseInt(req.params.id));
+        articleDetail.createdAt = formatDate(articleDetail.createdAt);
+        articleDetail.content = JSON.parse(articleDetail.content);
+
+        let sideArticles = await article.getSideArticles(articleDetail.Category.id);
+        sideArticles.forEach(article=>{
+            article.createdAt = formatDate(article.createdAt);
+        })
+
+        console.log(sideArticles);
+        let user = req.isAuthenticated() ? req.user : null;
+        res.render('articleDetails',{ user : user , article : articleDetail,sideArticles : sideArticles})
     }
 }
 

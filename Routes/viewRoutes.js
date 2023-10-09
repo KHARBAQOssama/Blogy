@@ -10,8 +10,8 @@ router.get('/', (req, res)=>{
 router.get('/articles', (req, res)=>{
     viewController.toArticlesPage(req,res)
 })
-router.get('/', (req, res)=>{
-    res.render('welcome')
+router.get('/article/:id', (req, res)=>{
+    viewController.toArticleDetails(req,res)
 })
 router.get('/addArticle', (req, res)=>{
     res.render('addArticle')

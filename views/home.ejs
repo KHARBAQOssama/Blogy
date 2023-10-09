@@ -1,0 +1,13 @@
+<% if(user){%>
+    <%- include('./partials/navbar.ejs', { user: user , dark : false}) %>
+<%}else{%>
+    <%- include('./partials/navbar.ejs', { user : null, dark : false }) %>
+<%}%>
+
+<%- include('./partials/landingTitle.ejs') %>
+<% if(articles){%>
+    <%- include('./partials/articles.ejs', { articles: articles}) %>
+<%}%>
+<div class="w-100 d-flex py-2">
+    <a class="py-3 px-5 fw-semibold fs-5 bg-dark text-white border-0 mx-auto" href="/articles">Load More</a>
+</div>

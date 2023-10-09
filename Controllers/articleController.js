@@ -7,6 +7,8 @@ class ArticleController {
         if(newArticle.new_category){
             // Add category Process
             newArticle.category = 1;
+        }else{
+            newArticle.category = parseInt(newArticle.category);
         }
         if(newArticle.cover){
             newArticle.cover = await storeImageGetPath(newArticle.cover)

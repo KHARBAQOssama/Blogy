@@ -1,0 +1,21 @@
+<div class="article d-flex flex-column gap-2">
+    <div class="article-cover w-100 d-flex flex-wrap p-2 gap-2 overflow-hidden" style="background-image: url('/img<%= article.cover %>');">
+        <span class="category text-white rounded-3 py-1 px-3 fw-semibold"><%= article.Category.name %></span>
+    </div>
+    <div class="article-info d-flex flex-column gap-1 flex-grow-1">
+        <h3 class="fw-bold title mb-auto"><%= article.title %></h3>
+        <div class="d-flex align-items-center justify-content-between">
+            <div class="d-flex align-items-center gap-2 author">
+                <div class="rounded-circle overflow-hidden d-flex justify-content-center align-items-center image" style="height: 30px; width: 30px;">
+                    <img src="<%= article.author.image %>"  alt="">
+                </div>
+                <span class="fw-bold text-uppercase name">
+                    <%= article.author.full_name %>
+                </span>
+            </div>
+            <span class="text-muted fw-light"><%= article.createdAt %></span>
+        </div>
+        <p class="description text-muted text-justify">Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa est provident cupiditate quidem possimus doloribus dolor eligendi magni, optio delectus sequi, obcaecati neque, eius quaerat.</p>
+        <button class="w-50 ms-auto bg-dark text-white rounded-4 p-2 border-0" href="/article/<%= article.id %>">read</button>
+    </div>
+</div> 

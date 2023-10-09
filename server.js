@@ -18,6 +18,8 @@ const app = express();
 
 app.use(express.static('public'));
 app.use('/js', express.static(__dirname + '/public/assets/js'))
+app.use('/css', express.static(__dirname + '/public/assets/css'))
+app.use('/img', express.static(__dirname + '/public/images'))
 
 //EJS
 app.use(expressLayout)

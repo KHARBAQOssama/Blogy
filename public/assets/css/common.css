@@ -1,0 +1,108 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.logo svg{
+    height: 45px;
+    width: max-content;
+}
+.search input{
+    width: 2.5em;
+    background-color: rgba(255, 255, 255, 0.169);
+    padding-left: 2em !important;
+}
+.search input:focus{
+    width: 20em;
+    outline: none;
+}
+.search svg{
+    fill: white;
+    height: 60%;
+    width: max-content;
+    top: 50%;
+    right: .5em;
+    transform: translateY(-50%);
+}
+section{
+    background-position: center center;
+    background-size:cover;
+    background-repeat: no-repeat;
+}
+.bg-dark-200{
+    background-color: rgba(0, 0, 0, 0.32);
+}
+.py-10{
+    padding: 12rem 0;
+}
+.articles{
+    padding: 3rem 6.2rem ;
+}
+.article{
+    flex:1;
+    min-width: 22rem;
+    transform: scale(.9);
+    transition: all .3s ease;
+}
+.article:hover{
+    transform: scale(0.95);
+}
+/* @media screen and(max-width:500px) {
+    .article{
+        flex:1;
+        max-width: 80% !important;
+        min-width: 300px;
+    }
+} */
+.article-cover {
+    height: 300px;
+    background-position: center center;
+    background-size:cover;
+    background-repeat: no-repeat;
+}
+.article-info .title,.article-info .description{
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    text-align: justify;
+}
+.article .title{
+    @supports (-webkit-line-clamp: 2) {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: initial;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+    }
+}
+.article .description{
+    @supports (-webkit-line-clamp: 3) {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: initial;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+    }
+}
+.article .category{
+    background-color: rgba(255, 255, 255, 0.297);
+    height: max-content;
+}
+a{
+    text-decoration: none;
+}
+nav.dark{
+    background-color: rgb(0,0,0,0.5);
+}
+.pagination a{
+    border: 2px solid black;
+}
+.pagination .active{
+    background-color: black;
+    color: white;
+}
+
+input,textarea{
+    background-color: rgb(248, 248, 248);
+}

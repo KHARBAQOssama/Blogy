@@ -1,0 +1,15 @@
+<button class="bg-dark rounded-circle border-0 p-2 position-fixed top-0 m-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+    <svg xmlns="http://www.w3.org/2000/svg" id="Isolation_Mode" data-name="Isolation Mode" viewBox="0 0 24 24" width="22" height="22" fill="#fff"><rect y="10.5" width="24" height="3"/><rect y="3.5" width="24" height="3"/><rect y="17.5" width="24" height="3"/></svg>
+</button>
+<section class="p-5">
+    <% switch (page) {
+        case 'home':%>
+            <%- include('./partials/dashboardElements/home.ejs')%>
+            <%break;
+    
+        default:
+            break;
+    } %>
+</section>
+
+<%- include('./partials/sidebar.ejs')%>

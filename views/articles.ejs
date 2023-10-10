@@ -1,0 +1,10 @@
+<% if(user){%>
+    <%- include('./partials/navbar.ejs', { user: user, dark: true}) %>
+<%}else{%>
+    <%- include('./partials/navbar.ejs', { user : null, dark: true }) %>
+<%}%>
+<h2 class="mt-5 pt-5 px-5">Articles</h2>
+<% if(articles){%>
+    <%- include('./partials/articles.ejs', { articles: articles}) %>
+<%}%>
+<%- include('./partials/pagination.ejs', { pagination: pagination}) %>

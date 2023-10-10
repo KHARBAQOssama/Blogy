@@ -1,0 +1,5 @@
+<section class="articles d-flex justify-content-between flex-wrap gap-5">
+    <% articles.forEach(article => {%>
+        <%- include('./article.ejs', { article: article}) %>
+    <%}); %>
+</section>

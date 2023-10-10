@@ -1,0 +1,9 @@
+<section class="d-flex flex-column gap-2">
+    <% for(let i =0 ; i< comments.length;i++){
+        %>
+        <%-
+            include('./displayComment.ejs',{comment : comments[i]});
+        %>
+        <%
+    } %>
+</section>

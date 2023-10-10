@@ -1,0 +1,16 @@
+<section class="mt-0 pt-5 pb-3 px-5" style="background-image: url('/img/<%= article.cover %>');">
+    <div class="w-100 h-100 d-flex flex-column gap-1 pt-5">
+        <h1 class="article-details-title text-white text-shadow"><%= article.title %></h1>
+        <div class="d-flex align-items-center gap-5">
+            <div class="d-flex align-items-center gap-2 author">
+                <div class="rounded-circle overflow-hidden d-flex justify-content-center align-items-center image" style="height: 30px; width: 30px;">
+                    <img src="<%= article.author.image %>"  alt="">
+                </div>
+                <span class="fw-bold text-uppercase name text-shadow text-white">
+                    <%= article.author.full_name %>
+                </span>
+            </div>
+            <span class="text-white text-shadow "><%= article.createdAt %></span>
+        </div>
+    </div>
+</section>

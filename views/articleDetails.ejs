@@ -1,0 +1,23 @@
+<% if(user){%>
+    <%- include('./partials/navbar.ejs', { user: user , dark : true}) %>
+<%}else{%>
+    <%- include('./partials/navbar.ejs', { user : null, dark : true }) %>
+<%}%>
+<%- include('./partials/articleTitle.ejs',{ article :{
+        cover : article.cover,
+        author:article.author,
+        title:article.title,
+        createdAt:article.createdAt
+    }}) %> 
+
+<section class="d-flex flex-wrap px-0">
+<%- include('./partials/articleContent.ejs',{
+    content : article.content,
+    id: article.id,
+    comments : article.comments
+}) %>
+<%- include('./partials/sideArticles.ejs',{
+    articles : sideArticles,
+}) %>
+</section>
+ 

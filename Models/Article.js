@@ -97,6 +97,14 @@ class Article {
             },
         });
     }
+
+    static async delete(id){
+        return await prisma.article.delete({
+            where :{
+                id : parseInt(id),
+            }
+        })
+    }
 }
 
 module.exports = Article;

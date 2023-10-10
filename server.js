@@ -6,17 +6,21 @@ const session = require('express-session')
 const viewRoutes = require('./Routes/viewRoutes')
 const authRoutes = require('./Routes/authRoutes')
 const articleRoutes = require('./Routes/articleRoutes')
+const commentRoutes = require('./Routes/commentRoutes')
 const profileRoutes = require('./Routes/profileRoutes')
 const dashboardRoutes = require('./Routes/dashboardRoutes');
 const passport = require('passport')
+const csrf = require('csurf'); // Import the csurf middleware
+const cookieParser = require('cookie-parser');
 require('./Config/passport')(passport)
 //App
 
+let csrfProtection = csrf({ cookie: true });
 
 
 
 const app = express();
-
+app.use(cookieParser());
 app.use(express.static('public'));
 app.use('/js', express.static(__dirname + '/public/assets/js'))
 app.use('/css', express.static(__dirname + '/public/assets/css'))
@@ -56,6 +60,7 @@ app.use((req, res, next)=>{
 app.use('/', viewRoutes)
 app.use('/auth', authRoutes)
 app.use('/article', articleRoutes)
+app.use('/comment', commentRoutes)
 app.use('/profile', profileRoutes)
 app.use('/dashboard',dashboardRoutes)
 

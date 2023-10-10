@@ -32,4 +32,11 @@
             default:
                 break;
         }}; %>
+
+        <%- include('./addCommentForm.ejs',{
+            id : id,
+        }) %>
+        <%- include('./displayComments.ejs',{
+            comments : comments,
+        }) %>
 </section>

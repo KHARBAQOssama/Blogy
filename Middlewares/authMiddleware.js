@@ -7,4 +7,5 @@ module.exports = {
         req.flash('error_message', "Forbidden Action for non authenticated users")
         res.redirect('/auth/login')
     }
+
 }

@@ -17,21 +17,81 @@
 
     <div class="container">
 
-        <ul>
-            <% categories.forEach(category => { %>
-                <li><%= category.name %></li>
-                <a href="/categories/<%= category.id %>/edit">Edit</a>
-                <form action="/categories/<%= category.id %>/delete" method="post">
 
-                    <button >Delete</button>
 
-                </form>
-               
-            <% }); %>
 
-            
-        </ul>
+        <table class="table align-middle mb-0 bg-white">
+            <thead class="bg-light" id="head">
+              <tr>
+                <th>Name</th>
+             
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+
+                
+                <% categories.forEach(category => { %>
+              <tr>
+
+                
+                <td>
+                  <div class="d-flex align-items-center">
+                    
+
+                    <!-- <img
+                        src="https://mdbootstrap.com/img/new/avatars/8.jpg"
+                        alt=""
+                        style="width: 45px; height: 45px"
+                        class="rounded-circle"
+                        /> -->
+                    <div class="ms-3 d-flex flex-row ">
+                        
+                        <div>
+
+
+                                <div>
+                                    <%= category.name %>
+                                </div>
+                           
+                                
+                               
+                      
+                        </div>
+                      
+                      <!-- <p class="fw-bold mb-1">John Doe</p> -->
+                 
+                    </div>
+                  </div>
+                </td>
+
+
+                <td class="row">
+                    <div class="col">
+                        <a id="button-edit"  href="/categories/<%= category.id %>/edit">Edit</a>
+                       
+                    </div>
+                    <div class="col">
+                        <form action="/categories/<%= category.id %>/delete" method="post">
+        
+                            <button id="button-delete" >Delete</button>
+        
+                        </form>
+
+                    </div>
+                   
+                </td>
           
+          
+              </tr>
+              <% }); %>
+             
+            
+            </tbody>
+          </table>
+     
+      
+           
          
 
     </div>

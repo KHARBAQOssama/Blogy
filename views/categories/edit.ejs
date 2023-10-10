@@ -17,12 +17,12 @@
 
     <div class="container">
 
-        <form action="/categories/<%= category.id %>/edit" method="post">
+        <form class="Category-form"  action="/categories/<%= category.id %>/edit" method="post">
             <label for="name">Category Name:</label>
             <input type="text" id="name" name="name" value="<%= category.name %>" required>
-            <button type="submit">Update Category</button>
+            <button class="Category-button" type="submit">Update Category</button>
             </form>
-            <a href="/categories">Back to Categories</a>
+            <a class="back-to-category" href="/categories">Back to Categories</a>
     </div>
    
     <!-- <a href="/categories">Back to Categories</a> -->

@@ -23,8 +23,46 @@ body{
 .Category-button{
     border-radius: 4px;
     padding:6px;
+    background-color: black;
+    color: white;
 }
 .Category-form input{
     padding:6px ;
 
 }
+.back-to-category{
+    margin-top: 7rem;
+   
+    color: rgb(91, 87, 87);
+    font-size: large;
+    
+   
+}
+.back-to-category:hover{
+    color: gray;
+}
+
+#button-delete{
+    border: none !important; 
+    background-color: red;
+    padding: 5px ;
+    color: white;
+    border-radius: 3px  ;                                                              ;
+
+}
+
+#button-edit{
+    text-decoration: none;
+    background-color:green;
+    padding: 5px ;
+    color: white;
+    border-radius: 3px  ; 
+}
+
+/* #head th{
+    color: white !important;
+   
+} */
+
+
+

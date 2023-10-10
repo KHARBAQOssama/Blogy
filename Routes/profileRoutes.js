@@ -24,4 +24,6 @@ router.post('/edit', ensureAuthentication, profileController.updateProfile);
 router.post('/delete', ensureAuthentication, profileController.deleteAccount);
 
 
+
+
 module.exports = router

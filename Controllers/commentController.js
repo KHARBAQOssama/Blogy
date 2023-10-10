@@ -12,6 +12,6 @@ class CommentController {
         console.log(newComment)
         res.redirect('/article/'+articleId);
     }
-}
-
+      
+    }
 module.exports = CommentController;

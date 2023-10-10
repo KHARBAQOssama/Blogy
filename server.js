@@ -8,14 +8,17 @@ const authRoutes = require('./Routes/authRoutes')
 const articleRoutes = require('./Routes/articleRoutes')
 const profileRoutes = require('./Routes/profileRoutes')
 const passport = require('passport')
+const csrf = require('csurf'); // Import the csurf middleware
+const cookieParser = require('cookie-parser');
 require('./Config/passport')(passport)
 //App
 
+let csrfProtection = csrf({ cookie: true });
 
 
 
 const app = express();
-
+app.use(cookieParser());
 app.use(express.static('public'));
 app.use('/js', express.static(__dirname + '/public/assets/js'))
 app.use('/css', express.static(__dirname + '/public/assets/css'))

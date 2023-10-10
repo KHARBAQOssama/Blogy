@@ -39,9 +39,9 @@
         <input type="text" id="search" class="p-2 border-0 rounded-pill overflow-hidden text-white fw-bold">
     </div>
     <% if(user) {%>
-        <a class="px-5 py-2 bg-dark text-white border-0 fw-bold rounded-4 text-decoration-none" href="/dashboard">
+        <button class="px-5 py-2 bg-dark text-white border-0 fw-bold rounded-4 text-decoration-none" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
             <%=user.full_name%>
-        </a>
+        </button>
     <%}else{%>
         <a class="px-5 py-2 bg-dark text-white border-0 fw-bold rounded-4 text-decoration-none" href="/auth/register">
             Join Us

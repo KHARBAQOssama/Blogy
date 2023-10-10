@@ -8,6 +8,7 @@ const authRoutes = require('./Routes/authRoutes')
 const articleRoutes = require('./Routes/articleRoutes')
 const commentRoutes = require('./Routes/commentRoutes')
 const profileRoutes = require('./Routes/profileRoutes')
+const dashboardRoutes = require('./Routes/dashboardRoutes');
 const passport = require('passport')
 const csrf = require('csurf'); // Import the csurf middleware
 const cookieParser = require('cookie-parser');
@@ -61,6 +62,7 @@ app.use('/auth', authRoutes)
 app.use('/article', articleRoutes)
 app.use('/comment', commentRoutes)
 app.use('/profile', profileRoutes)
+app.use('/dashboard',dashboardRoutes)
 
 const PORT = process.env.PORT
 app.listen(PORT, ()=>{

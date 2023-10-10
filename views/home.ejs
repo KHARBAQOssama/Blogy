@@ -11,3 +11,7 @@
 <div class="w-100 d-flex py-2">
     <a class="py-3 px-5 fw-semibold fs-5 bg-dark text-white border-0 mx-auto" href="/articles">Load More</a>
 </div>
+
+<% if(user){%>
+    <%- include('./partials/sidebar.ejs')%>
+<%}%>

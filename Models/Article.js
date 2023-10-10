@@ -75,6 +75,28 @@ class Article {
             )
         return articles;
     }
+
+    async getCommentsCount(req){
+        let userArticles = await this.getUserArticles(req.user.id);
+        let count = 0;
+        userArticles.map((article) => count += article.comments.length);
+        return count;
+    }
+
+    async getUserArticles(userId){
+        return await prisma.article.findMany({
+            where: {
+              authorId: userId,
+            },
+            orderBy: {
+                createdAt: 'desc',
+            },
+            include: {
+              comments: true, 
+              Category:true,
+            },
+        });
+    }
 }
 
 module.exports = Article;

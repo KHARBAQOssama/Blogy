@@ -13,7 +13,7 @@ router.get('/pedit', ensureAuthentication, csrfProtection, (req, res)=>{
         const user = req.user;
         const imageUrl = user.image
             ? `/img/${user.image}`
-            : '/images/default-profile.png';
+            : '/img/default-profile.png';
 
         res.render('editProfile', {
             user: req.user,

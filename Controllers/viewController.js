@@ -40,7 +40,7 @@ class ViewController {
         let articleDetail = await article.getArticle(parseInt(req.params.id));
         articleDetail.createdAt = formatDate(articleDetail.createdAt);
         articleDetail.content = JSON.parse(articleDetail.content);
-
+        console.log(articleDetail);
         let sideArticles = await article.getSideArticles(articleDetail.Category.id);
         sideArticles.forEach(article=>{
             article.createdAt = formatDate(article.createdAt);
@@ -49,6 +49,18 @@ class ViewController {
         console.log(sideArticles);
         let user = req.isAuthenticated() ? req.user : null;
         res.render('articleDetails',{ user : user , article : articleDetail,sideArticles : sideArticles})
+    }
+
+    async toDashboardStatics(req,res){
+        res.render('dashboard',{ 
+            user: req.user, 
+            page : 'home' , 
+            data : { 
+                    articles : await article.getUserArticles(req.user.id), 
+                    comments : await article.getCommentsCount(req)
+                    }
+                }
+            );
     }
 }
 

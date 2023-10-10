@@ -59,7 +59,7 @@ section{
     background-size:cover;
     background-repeat: no-repeat;
 }
-.article-info .title,.article-info .description{
+.article-info .title,.article-info .description , tbody .title {
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
@@ -136,4 +136,7 @@ input,textarea{
 }
 .sideArticles{
     flex-shrink: 1 !important;
+}
+tbody .title{
+ width: 40ch !important;
 }

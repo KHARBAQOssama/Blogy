@@ -1,0 +1,59 @@
+<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasExampleLabel">Offcanvas</h5>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body h-100 d-flex flex-column">
+
+        <div class="d-flex flex-column gap-3">
+            <div class="img-container rounded-circle overflow-hidden d-flex justify-content-center align-items-center shadow mx-auto" style="height: 80px; width: 80px; object-fit: cover;">
+                <img class="h-100" src="/images/<%= user.image ? user.image : 'default-img.png' %>" alt="">
+            </div>
+            <h3 class="text-center "><%= user.full_name %></h3>
+            <h5 class="text-center text-muted text-lowercase"><%= user.email %></h5>
+        </div>
+        <div class="dropdown mt-3">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                Actions
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="/auth/logout">Logout</a></li>
+                <li><a class="dropdown-item" href="/profile/pedit" class="btn btn-outline-dark">Edit Profile</a></li>
+                <li><a class="dropdown-item btn btn-primary" data-bs-toggle="modal" href="#" data-bs-target="#exampleModal">
+                    Delete Account
+                </a></li>
+            </ul>
+        </div>
+        <%if(user.isAuthor){%>
+            <a class="px-5 py-2 mt-auto ms-auto bg-dark text-white border-0 fw-bold text-decoration-none w-75 text-center" href="/dashboard">
+                Dashboard
+            </a>
+        <%}%>
+    </div>
+</div>
+
+
+<div class="modal" id="exampleModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Delete Account</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"></span>
+                </button>
+            </div>
+            <form action="/profile/delete" method="POST">
+                <div class="modal-body">
+                    <input type="text" name="userId" value="<%= user.id%>">
+                    <p>Are you sure You want to delete you Account ?
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -25,6 +25,7 @@ class ArticleController {
         res.status(201).json({ message: `Article stored successfully` });
         // res.render('index');
     }
+
 }
 
 module.exports = ArticleController;

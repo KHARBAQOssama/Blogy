@@ -18,7 +18,7 @@
                     <div class="form-group mt-2">
                         <div class="d-block">
                             <img src="<%= imageUrl %>" alt="Profile Image" />
-                            <p class="m-0"><%= user.image.split('.')[0] %></p>
+                            <p class="m-0"><%= user.image?.split('.')[0] %></p>
                         </div>
                         <label for="formFile" class="form-label mt-2">Upload an Image</label>
                         <input class="form-control mt-2" type="file" id="formFile" name="profileImage" placeholder="get-image">

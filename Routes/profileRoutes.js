@@ -7,8 +7,8 @@ router.get('/pedit', ensureAuthentication, (req, res)=>{
     try {
         const user = req.user;
         const imageUrl = user.image
-            ? `/images/${user.image}`
-            : '/images/default-profile.png';
+            ? `/img/${user.image}`
+            : '/img/default-profile.png';
 
         res.render('editProfile', {
             user: req.user,

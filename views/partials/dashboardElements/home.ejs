@@ -1,0 +1,29 @@
+<h3 class="m-3">ARTICLES</h3>
+
+<table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">title</th>
+        <th scope="col">comments</th>
+        <th scope="col">category</th>
+        <th scope="col">events</th>
+      </tr>
+    </thead>
+    <tbody>
+        <% for(let i =0;i<data.articles.length;i++){%>
+            <tr class="">
+                <td class="title"><%= data.articles[i].title %></td>
+                <td><%= data.articles[i].comments.length %></td>
+                <td><%= data.articles[i].Category.name %></td>
+                <td class="d-flex gap-1">
+                    <a class="p-1 mt-auto ms-auto bg-dark text-white border-0 fw-bold text-decoration-none text-center" href="/dashboard">
+                        delete
+                    </a>
+                    <a class="p-1 mt-auto ms-auto bg-dark text-white border-0 fw-bold text-decoration-none text-center" href="/dashboard">
+                        update
+                    </a>
+                </td>
+              </tr>
+            <%}%>
+    </tbody>
+  </table>

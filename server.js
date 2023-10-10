@@ -7,6 +7,7 @@ const viewRoutes = require('./Routes/viewRoutes')
 const authRoutes = require('./Routes/authRoutes')
 const articleRoutes = require('./Routes/articleRoutes')
 const profileRoutes = require('./Routes/profileRoutes')
+const dashboardRoutes = require('./Routes/dashboardRoutes');
 const passport = require('passport')
 require('./Config/passport')(passport)
 //App
@@ -56,6 +57,7 @@ app.use('/', viewRoutes)
 app.use('/auth', authRoutes)
 app.use('/article', articleRoutes)
 app.use('/profile', profileRoutes)
+app.use('/dashboard',dashboardRoutes)
 
 const PORT = process.env.PORT
 app.listen(PORT, ()=>{

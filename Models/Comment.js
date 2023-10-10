@@ -17,7 +17,19 @@ class Comment {
         return comment;
     }
 
-   
+    async delete(commentId){
+        let deleteComment;
+        try {
+            deleteComment = await prisma.comment.delete({
+                where: {id : commentId}
+                 });
+        
+
+        }catch (error){
+            throw error;
+        }
+        return deleteComment;
+    }
 }
 
 module.exports = Comment;

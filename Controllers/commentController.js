@@ -13,6 +13,14 @@ class CommentController {
         res.redirect('/article/'+articleId);
     }
   
+    static async deleteComment(req,res){
+        const commentId = parseInt(req.params.id);
+        let comment = new Comment();
+        let commentdeleted = await comment.delete(commentId);
+        const referer = req.header('Referer') || '/';
+        res.redirect(referer);
+
+      }
       
     }
 module.exports = CommentController;

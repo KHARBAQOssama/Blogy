@@ -16,9 +16,9 @@
                 <td><%= data.articles[i].comments.length %></td>
                 <td><%= data.articles[i].Category.name %></td>
                 <td class="d-flex gap-1">
-                    <a class="p-1 mt-auto ms-auto bg-dark text-white border-0 fw-bold text-decoration-none text-center" href="/dashboard">
+                    <button class="p-1 mt-auto ms-auto bg-dark text-white border-0 fw-bold text-decoration-none text-center" onclick="showDeleteModel('<%= data.articles[i].id %>')">
                         delete
-                    </a>
+                    </button>
                     <a class="p-1 mt-auto ms-auto bg-dark text-white border-0 fw-bold text-decoration-none text-center" href="/dashboard">
                         update
                     </a>
@@ -27,3 +27,28 @@
             <%}%>
     </tbody>
   </table>
+
+
+  <div class="modal" id="deleteModel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Delete Article</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"></span>
+                </button>
+            </div>
+            <form action="/profile/delete" method="POST">
+                <div class="modal-body">
+                    <input type="text" name="userId" value="<%= user.id%>">
+                    <p>Are you sure You want to delete you Article ?
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

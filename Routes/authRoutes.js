@@ -3,18 +3,24 @@ const {PrismaClient} = require("@prisma/client");
 const router = express.Router()
 const prisma = new PrismaClient()
 const bcrypt = require('bcryptjs')
+const csrf = require('csurf'); // Import the csurf middleware
+const cookieParser = require('cookie-parser');
 const passport = require('passport')
 const {ensureAuthentication} = require("../Middlewares/authMiddleware");
 
-router.get('/register', (req, res)=>{
-    res.render("register")
+
+const csrfProtection = csrf({ cookie: true });
+router.use(cookieParser());
+router.get('/register',csrfProtection, (req, res)=>{
+    res.render('register', { csrfToken: req.csrfToken() })
 })
-router.get('/login', (req, res)=>{
-    res.render("login")
+router.get('/login', csrfProtection,(req, res)=>{
+    res.render('login', { csrfToken: req.csrfToken() })
 })
 
 
-router.post('/register', async(req, res)=>{
+router.post('/register',csrfProtection, async(req, res)=>{
+
     let errors = []
     /*const isAuthor = req.body.isAuthor === 'true';*/
     const {name, email, password, password_confirmed, isAuthor} = req.body
@@ -51,7 +57,8 @@ router.post('/register', async(req, res)=>{
                 name,
                 email,
                 password,
-                password_confirmed
+                password_confirmed,
+                csrfToken: req.csrfToken()
             })
         }else{
             const saltRounds = 10;
@@ -71,7 +78,7 @@ router.post('/register', async(req, res)=>{
     }
 })
 
-router.post('/login',(req, res,next)=>{
+router.post('/login',csrfProtection,(req, res,next)=>{
     passport.authenticate('local', {
         successRedirect: '/dashboard',
         failureRedirect: '/auth/login',
@@ -80,7 +87,7 @@ router.post('/login',(req, res,next)=>{
 })
 
 
-router.get('/logout', ensureAuthentication,(req, res)=>{
+router.get('/logout',csrfProtection, ensureAuthentication,(req, res)=>{
     req.logOut(()=>{
         req.flash("success_message", "Logged out")
         res.redirect('/auth/login')

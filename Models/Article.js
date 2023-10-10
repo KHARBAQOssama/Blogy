@@ -49,7 +49,11 @@ class Article {
                 id : id
             },
             include : {
-                comments : true,
+                comments : {
+                    include: {
+                      user: true,
+                    }
+                  },
                 author:true,
                 Category:true
             }

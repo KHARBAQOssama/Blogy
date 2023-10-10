@@ -6,6 +6,7 @@ const session = require('express-session')
 const viewRoutes = require('./Routes/viewRoutes')
 const authRoutes = require('./Routes/authRoutes')
 const articleRoutes = require('./Routes/articleRoutes')
+const commentRoutes = require('./Routes/commentRoutes')
 const profileRoutes = require('./Routes/profileRoutes')
 const passport = require('passport')
 require('./Config/passport')(passport)
@@ -55,6 +56,7 @@ app.use((req, res, next)=>{
 app.use('/', viewRoutes)
 app.use('/auth', authRoutes)
 app.use('/article', articleRoutes)
+app.use('/comment', commentRoutes)
 app.use('/profile', profileRoutes)
 
 const PORT = process.env.PORT

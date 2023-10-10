@@ -6,5 +6,4 @@ const CommentController = require('../Controllers/commentController')
 router.post('/post/:id', ensureAuthentication, CommentController.create);
 
 
-
 module.exports = router;

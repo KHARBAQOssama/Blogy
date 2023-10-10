@@ -17,7 +17,7 @@
                   <p class="small text-muted mb-0"><%= comment.createdAt.toDateString() %> <%= comment.createdAt.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) %>
 
                   </p>
-                  <form action="" method="post">
+                  <form action="/comment/<%= comment.id %>/delete" method="post">
                     <input type="hidden" class="hidden" value="<%= comment.id %>">
                     <button type="submit" class="border-0">
                       <i class="fas fa-trash-can" ></i>

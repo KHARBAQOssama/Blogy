@@ -13,6 +13,8 @@
 <section class="d-flex flex-wrap px-0">
 <%- include('./partials/articleContent.ejs',{
     content : article.content,
+    id: article.id,
+    comments : article.comments
 }) %>
 <%- include('./partials/sideArticles.ejs',{
     articles : sideArticles,

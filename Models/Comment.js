@@ -16,6 +16,8 @@ class Comment {
         }})
         return comment;
     }
+
+   
 }
 
 module.exports = Comment;

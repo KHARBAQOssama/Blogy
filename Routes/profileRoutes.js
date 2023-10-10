@@ -30,4 +30,6 @@ router.post('/edit', ensureAuthentication, csrfProtection, profileController.upd
 router.post('/delete', ensureAuthentication, csrfProtection, profileController.deleteAccount);
 
 
+
+
 module.exports = router

@@ -1,6 +1,7 @@
 <form action="/comment/post/<%= id %>" method="post">
     <div class="form-group">
       <label for="commentText">Comment</label>
+      <input type="hidden" name="_csrf" value="<%= csrfToken %>">
       <textarea class="form-control" id="commentText" name="text" rows="4" required></textarea>
     </div>
     <button type="submit" class="btn btn-primary">Submit Comment</button>

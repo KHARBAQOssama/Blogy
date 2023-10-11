@@ -48,7 +48,11 @@ class ViewController {
 
         console.log(sideArticles);
         let user = req.isAuthenticated() ? req.user : null;
-        res.render('articleDetails',{ user : user , article : articleDetail,sideArticles : sideArticles})
+        res.render('articleDetails',{ 
+            user : user , 
+            article : articleDetail,
+            sideArticles : sideArticles,
+            csrfToken: req.csrfToken(), })
     }
 
     async toDashboardStatics(req,res){

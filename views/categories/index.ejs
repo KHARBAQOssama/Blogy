@@ -75,6 +75,7 @@
                     </div>
                     <div class="col">
                         <form action="/categories/<%= category.id %>/delete" method="post">
+                          <input type="hidden" name="_csrf" value="<%= csrfToken %>">
         
                             <button id="button-delete" >Delete</button>
         

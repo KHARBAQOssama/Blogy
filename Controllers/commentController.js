@@ -6,6 +6,7 @@ const Comment = require('../Models/Comment');
 
 class CommentController {
     static async create(req,res){
+        console.log(req.body._csrf);
         let userId = req.user.id;
         let text = req.body.text;
         let articleId = parseInt(req.params.id);

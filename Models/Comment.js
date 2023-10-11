@@ -30,6 +30,13 @@ class Comment {
         }
         return deleteComment;
     }
+    async getComment(id){
+        return await prisma.comment.findUnique({
+            where : {
+                id : id
+            },
+        })
+    }
 }
 
 module.exports = Comment;

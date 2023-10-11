@@ -81,8 +81,9 @@ class ViewController {
                     { 
                         article : articleToEdit,
                         categories : categories
-                    }
-                }
+                    },
+            csrfToken : req.csrfToken(),
+            }
             );
     }
     async toArticleAdd(req,res){
@@ -93,8 +94,9 @@ class ViewController {
             data : 
                     { 
                         categories : categories
-                    }
-                }
+                    },
+            csrfToken : req.csrfToken(),
+            }
             );
     }
 }

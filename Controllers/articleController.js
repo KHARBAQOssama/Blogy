@@ -4,6 +4,7 @@ const { storeImageGetPath } = require('../utils/tools');
 
 class ArticleController {
     async create(req,res){
+        let errors = [];
         let newArticle = req.body.article;
         if(newArticle.new_category){
             let category = await Category.getOne(newArticle.new_category);
@@ -27,8 +28,11 @@ class ArticleController {
         let article = new Article(newArticle.title,newArticle.items,newArticle.cover,new Date(),1,newArticle.category);
         article = await article.save();
         console.log(article);
-        res.status(201).json({ message: `Article stored successfully` });
-        // res.render('index');
+        
+        if(article){
+            req.flash('success_message', 'Article created successfully');
+            res.redirect('/dashboard');
+        }
     }
     async delete(req,res){
         let deleted = await Article.delete(req.params.id);
@@ -39,6 +43,7 @@ class ArticleController {
         }
     }
     async update(req,res){
+        let errors = [];
         let newArticle = req.body.article;
         if(newArticle.new_category){
             let category = await Category.getOne(newArticle.new_category);
@@ -61,8 +66,11 @@ class ArticleController {
         newArticle.items = JSON.stringify(newArticle.items);
         let article = new Article(newArticle.title,newArticle.items,newArticle.cover,new Date(),1,newArticle.category);
         article = await article.update(newArticle.id);
-        console.log(article);
-        res.status(201).json({ message: `Article updated successfully` });
+        // console.log(article);
+        if(article){
+            console.log('hiiivbnu');  
+            res.status(201).json({ message: `Article stored successfully` });
+        }
     }
 }
 

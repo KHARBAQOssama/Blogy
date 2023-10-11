@@ -17,7 +17,7 @@ exports.createCategory = async (req, res) => {
     await prisma.category.create({
         data: { name },
     });
-    res.redirect('/categories/new');
+    res.redirect('/categories');
 };
 
 

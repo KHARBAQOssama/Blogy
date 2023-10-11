@@ -12,13 +12,13 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 70vh;
+    /* height: 70vh; */
     flex-direction: column;
 }
 .title{
     display: flex;
     justify-content: center;
-    margin: 4rem;
+    margin: 2rem;
 }
 .Category-button{
     border-radius: 4px;
@@ -59,10 +59,15 @@ body{
     border-radius: 3px  ; 
 }
 
-/* #head th{
-    color: white !important;
-   
-} */
-
+#table-category{
+    height: 70vh;
+    width: 90vw;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+#table-category table thead{
+    top: 0;
+    position: sticky;
+}
 
 

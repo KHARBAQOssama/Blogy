@@ -1,4 +1,14 @@
-<h3 class="m-3">ARTICLES</h3>
+<div class="d-flex mt-4 justify-content-between">
+
+    
+
+    <h3 class="">ARTICLES</h3>
+
+    <a class="fw-bold" href="/categories/new">Add category</a>
+
+</div>
+
+
 
 <table class="table table-hover">
     <thead>
@@ -16,7 +26,7 @@
                 <td><%= data.articles[i].comments.length %></td>
                 <td><%= data.articles[i].Category.name %></td>
                 <td class="d-flex gap-1">
-                    <button class="p-1 mt-auto ms-auto bg-dark text-white border-0 fw-bold text-decoration-none text-center" onclick="showDeleteModel('<%= data.articles[i].id %>')">
+                    <button class="p-1 mt-auto ms-auto bg-dark text-white border-0 fw-bold text-decoration-none text-center" data-bs-toggle="modal" data-bs-target="#deleteModal" onclick="showDeleteModel('<%= data.articles[i].id %>')">
                         delete
                     </button>
                     <a class="p-1 mt-auto ms-auto bg-dark text-white border-0 fw-bold text-decoration-none text-center" href="/dashboard">
@@ -29,7 +39,7 @@
   </table>
 
 
-  <div class="modal" id="deleteModel">
+  <div class="modal" id="deleteModal">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -38,9 +48,8 @@
                     <span aria-hidden="true"></span>
                 </button>
             </div>
-            <form action="/profile/delete" method="POST">
+            <form action="/profile/delete" method="post">
                 <div class="modal-body">
-                    <input type="text" name="userId" value="<%= user.id%>">
                     <p>Are you sure You want to delete you Article ?
                     </p>
                 </div>

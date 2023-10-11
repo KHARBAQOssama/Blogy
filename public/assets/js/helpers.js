@@ -7,5 +7,8 @@ function formatDate(inputDateString) {
     return formattedDate;
 }
 
-
-console.log("heeee");
+function showDeleteModel(id){
+    console.log(id);
+    let button = document.querySelector('#deleteModal form');
+    button.setAttribute('action',`/article/${id}/delete`);
+}

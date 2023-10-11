@@ -60,6 +60,9 @@ app.use((req, res, next)=>{
     next()
 })
 
+
+
+
 //ROUTES
 app.use('/', viewRoutes)
 app.use('/auth', authRoutes)

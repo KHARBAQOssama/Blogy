@@ -25,7 +25,14 @@ class ArticleController {
         res.status(201).json({ message: `Article stored successfully` });
         // res.render('index');
     }
-
+    async delete(req,res){
+        let deleted = await Article.delete(req.params.id);
+        if(deleted){
+            req.flash('success_message', 'Article deleted successfully');
+            const referer = req.header('Referer') || '/';
+            res.redirect(referer);
+        }
+    }
 }
 
 module.exports = ArticleController;

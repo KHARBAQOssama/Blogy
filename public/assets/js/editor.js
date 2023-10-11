@@ -371,3 +371,89 @@ function store(articleData){
           console.error('Error:', error);
         });
 }
+
+function collectAndUpdate(id){
+    let title = document.getElementById('article-title');
+    let category = document.getElementById('article-category');
+    let cover = document.querySelector('.article-cover');
+    let catId = category.getAttribute('data-id');
+    let article = {
+        id: parseInt(id),
+        title : title.value,
+        category : catId != 0 ? catId : '',
+        new_category : catId == 0 ? category.value : '',
+        cover : cover?.src  ? cover.src : '',
+        items: []
+    }
+    let elements = document.querySelectorAll('.article-content');
+    console.log(elements);
+    elements.forEach(element =>{
+        if(element.value || element.tagName === 'IMG'){
+            let object = {};
+            let name = element.name;
+            console.log(name , element.src ? element.src : 'not image');
+            switch(name){
+                case 'paragraph':
+                    object.type= 'paragraph';
+                    object.content = element.value;
+                    break;
+                case 'header1':
+                    object.type= 'header1';
+                    object.content = element.value;
+                    break;
+                case 'header2':
+                    object.type= 'header2';
+                    object.content = element.value;
+                    break;
+                case 'header3':
+                    object.type= 'header3';
+                    object.content = element.value;
+                    break;
+                case 'image':
+                    object.type= 'image';
+                    object.content = element.src;
+                    break;
+                case 'listItem':
+                    if(article.items.length && article.items[article.items.length-1].type == 'list'){
+                        article.items[article.items.length-1].items.push(element.value)
+                    }else{
+                        object.type= 'list';
+                        object.items = [element.value];
+                    }
+                    break;
+                default:
+                    break;
+            }
+            if(object.type){
+                article.items.push(object)
+            }
+            
+        }
+    });
+    console.log(article);
+    update(article);
+}
+
+function update(articleData){
+    fetch(`/article/${articleData.id}/update`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },  
+        body: JSON.stringify({ article: articleData}),
+      })
+        .then((response) => {
+          if (response.ok) {
+            return response.json();
+          } else {
+            throw new Error('Failed to store the article');
+          }
+        })
+        .then((data) => {
+          // Handle the response from the server as needed
+          console.log('Article stored successfully:', data);
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+        });
+}

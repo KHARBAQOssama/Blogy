@@ -3,9 +3,16 @@ const router = express.Router()
 const {ensureAuthentication} = require("../Middlewares/authMiddleware");
 const ViewController = require('../Controllers/viewController');
 const viewController = new ViewController();
+const {isAuthor , isArticleOwner} = require("../Middlewares/articleMiddleware")
 
-router.get('/', ensureAuthentication, viewController.toDashboardStatics)
-router.get('/editArticle/:id',ensureAuthentication, viewController.toArticleEdit)
-router.get('/addArticle',ensureAuthentication, viewController.toArticleAdd)
+const csrf = require('csurf');
+const cookieParser = require('cookie-parser');
+
+const csrfProtection = csrf({ cookie: true });
+router.use(cookieParser());
+
+router.get('/', ensureAuthentication,  isAuthor, viewController.toDashboardStatics)
+router.get('/editArticle/:id',ensureAuthentication, csrfProtection,  isAuthor, isArticleOwner, viewController.toArticleEdit)
+router.get('/addArticle',ensureAuthentication,csrfProtection,  isAuthor, isArticleOwner, viewController.toArticleAdd)
 
 module.exports = router

@@ -43,7 +43,7 @@
             <button class="p-2 pt-1 rounded-2 shadow-sm m-2 mt-auto bg-transparent border-0" onclick="toggleOptions()">+</button>
         </div>
     </div>
-    <button onclick="collect()" class="ms-auto my-2 py-1 px-4 rounded-2 border-0 bg-dark text-white">
+    <button onclick="collect('<%= csrfToken %>')" class="ms-auto my-2 py-1 px-4 rounded-2 border-0 bg-dark text-white">
         collect
     </button>
 </div>

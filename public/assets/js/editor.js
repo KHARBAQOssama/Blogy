@@ -228,7 +228,7 @@ function removeInput(element){
     element.parentElement.remove();
 }
 
-function collect(){
+function collect(csrf){
     let title = document.getElementById('article-title');
     let category = document.getElementById('article-category');
     let cover = document.querySelector('.article-cover');
@@ -286,7 +286,7 @@ function collect(){
         }
     });
     console.log(article);
-    store(article);
+    store(article,csrf);
 }
 
 function imageChanged(event,content = true){
@@ -347,21 +347,22 @@ function chooseCategory(event,id,text){
     input.value = text
 }
 
-function store(articleData){
+function store(articleData,csrf){
     console.log(articleData + "will be ");
     fetch(`/article`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },  
-        body: JSON.stringify({ article: articleData}),
+        body:  JSON.stringify({
+            _csrf : csrf, 
+           article : articleData
+        }), 
       })
         .then((response) => {
-          if (response.ok) {
-            return response.json();
-          } else {
-            throw new Error('Failed to store the article');
-          }
+            if (response.status == 201) {
+                window.location.href = "http://127.0.0.1:3000/dashboard"; 
+            } 
         })
         .then((data) => {
           // Handle the response from the server as needed
@@ -372,7 +373,7 @@ function store(articleData){
         });
 }
 
-function collectAndUpdate(id){
+function collectAndUpdate(csrf,id){
     let title = document.getElementById('article-title');
     let category = document.getElementById('article-category');
     let cover = document.querySelector('.article-cover');
@@ -431,27 +432,30 @@ function collectAndUpdate(id){
         }
     });
     console.log(article);
-    update(article);
+    update(article,csrf);
 }
 
-function update(articleData){
+function update(articleData,csrf){
     fetch(`/article/${articleData.id}/update`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },  
-        body: JSON.stringify({ article: articleData}),
+        body:  JSON.stringify({
+            _csrf : csrf, 
+           article : articleData
+        }), 
       })
         .then((response) => {
-          if (response.ok) {
-            return response.json();
-          } else {
-            throw new Error('Failed to store the article');
-          }
+          if (response.status == 201) {
+            window.location.href = "http://127.0.0.1:3000/dashboard";
+            
+          } 
+          
         })
         .then((data) => {
           // Handle the response from the server as needed
-          console.log('Article stored successfully:', data);
+        //   console.log('Article stored successfully:', data);
         })
         .catch((error) => {
           console.error('Error:', error);

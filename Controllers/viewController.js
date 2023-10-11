@@ -1,5 +1,6 @@
 const { Prisma } = require('@prisma/client');
 const Article = require('../Models/Article');
+const Category = require('../Models/Category');
 const { formatDate } = require('../utils/tools');
 const article = new Article();
 
@@ -68,8 +69,7 @@ class ViewController {
         let articleToEdit = await article.getArticle(parseInt(req.params.id));
         articleToEdit.content = JSON.parse(articleToEdit.content);
 
-        let categories;
-
+        let categories = await Category.getAll();
         res.render('dashboard',{ 
             user: req.user, 
             page : 'editArticle' , 
@@ -82,7 +82,7 @@ class ViewController {
             );
     }
     async toArticleAdd(req,res){
-        let categories;
+        let categories = await Category.getAll();
         res.render('dashboard',{ 
             user: req.user, 
             page : 'addArticle' , 

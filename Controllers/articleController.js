@@ -1,12 +1,17 @@
 const Article = require('../Models/Article');
+const Category = require('../Models/Category');
 const { storeImageGetPath } = require('../utils/tools');
 
 class ArticleController {
     async create(req,res){
         let newArticle = req.body.article;
         if(newArticle.new_category){
-            // Add category Process
-            newArticle.category = 1;
+            let category = await Category.getOne(newArticle.new_category);
+            if(!category){
+                category = new Category(newArticle.new_category);
+                category = await category.save();
+            }
+            newArticle.category = category.id;
         }else{
             newArticle.category = parseInt(newArticle.category);
         }
@@ -36,8 +41,12 @@ class ArticleController {
     async update(req,res){
         let newArticle = req.body.article;
         if(newArticle.new_category){
-            // Add category Process
-            newArticle.category = 1;
+            let category = await Category.getOne(newArticle.new_category);
+            if(!category){
+                category = new Category(newArticle.new_category);
+                category = await category.save();
+            }
+            newArticle.category = category.id;
         }else{
             newArticle.category = parseInt(newArticle.category);
         }

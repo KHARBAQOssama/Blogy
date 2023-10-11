@@ -5,5 +5,7 @@ const ViewController = require('../Controllers/viewController');
 const viewController = new ViewController();
 
 router.get('/', ensureAuthentication, viewController.toDashboardStatics)
+router.get('/editArticle/:id',ensureAuthentication, viewController.toArticleEdit)
+router.get('/addArticle',ensureAuthentication, viewController.toArticleAdd)
 
 module.exports = router

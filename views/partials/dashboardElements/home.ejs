@@ -29,7 +29,7 @@
                     <button class="p-1 mt-auto ms-auto bg-dark text-white border-0 fw-bold text-decoration-none text-center" data-bs-toggle="modal" data-bs-target="#deleteModal" onclick="showDeleteModel('<%= data.articles[i].id %>')">
                         delete
                     </button>
-                    <a class="p-1 mt-auto ms-auto bg-dark text-white border-0 fw-bold text-decoration-none text-center" href="/dashboard">
+                    <a class="p-1 mt-auto ms-auto bg-dark text-white border-0 fw-bold text-decoration-none text-center" href="/dashboard/editArticle/<%= data.articles[i].id %>">
                         update
                     </a>
                 </td>

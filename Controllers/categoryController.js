@@ -5,7 +5,7 @@ const prisma = new PrismaClient()
 
 
 exports.showNewForm = (req, res) => {
-    res.render('categories/new');
+    res.render('categories/new',  { csrfToken: req.csrfToken() });
 };
 
 exports.createCategory = async (req, res) => {
@@ -24,7 +24,7 @@ exports.createCategory = async (req, res) => {
 
 exports.getAllCategories = async (req, res) => {
     const categories = await prisma.category.findMany();
-    res.render('categories/index', { categories });
+    res.render('categories/index', { categories, csrfToken: req.csrfToken()  });
   };
 
   exports.showEditForm = async (req, res) => {
@@ -32,7 +32,7 @@ exports.getAllCategories = async (req, res) => {
     const category = await prisma.category.findUnique({
       where: { id: categoryId },
     });
-    res.render('categories/edit', { category });
+    res.render('categories/edit', { category , csrfToken: req.csrfToken() });
   };
 
 

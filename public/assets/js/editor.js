@@ -360,6 +360,7 @@ function store(articleData,csrf){
         }), 
       })
         .then((response) => {
+            console.log(response);
             if (response.status == 201) {
                 window.location.href = "http://127.0.0.1:3000/dashboard"; 
             } 
@@ -447,6 +448,7 @@ function update(articleData,csrf){
         }), 
       })
         .then((response) => {
+            console.log(response);
           if (response.status == 201) {
             window.location.href = "http://127.0.0.1:3000/dashboard";
             

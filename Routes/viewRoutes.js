@@ -11,7 +11,7 @@ router.use(cookieParser());
 const viewController = new ViewController();
 router.get('/', viewController.toHomePage)
 router.get('/articles',viewController.toArticlesPage)
-router.get('/article/:id', csrfProtection, viewController.toArticleDetails)
+// router.get('/article/:id', csrfProtection, viewController.toArticleDetails)
 
 
 module.exports = router

@@ -42,13 +42,10 @@ class ViewController {
         let articleDetail = await article.getArticle(parseInt(req.params.id));
         articleDetail.createdAt = formatDate(articleDetail.createdAt);
         articleDetail.content = JSON.parse(articleDetail.content);
-        console.log(articleDetail);
         let sideArticles = await article.getSideArticles(articleDetail.Category.id);
         sideArticles.forEach(article=>{
             article.createdAt = formatDate(article.createdAt);
         })
-
-        console.log(sideArticles);
         let user = req.isAuthenticated() ? req.user : null;
         res.render('articleDetails',{ 
             user : user , 

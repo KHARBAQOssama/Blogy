@@ -228,7 +228,7 @@ function removeInput(element){
     element.parentElement.remove();
 }
 
-function collect(){
+function collect(csrf){
     let title = document.getElementById('article-title');
     let category = document.getElementById('article-category');
     let cover = document.querySelector('.article-cover');
@@ -286,7 +286,7 @@ function collect(){
         }
     });
     console.log(article);
-    store(article);
+    store(article,csrf);
 }
 
 function imageChanged(event,content = true){
@@ -347,25 +347,117 @@ function chooseCategory(event,id,text){
     input.value = text
 }
 
-function store(articleData){
+function store(articleData,csrf){
     console.log(articleData + "will be ");
     fetch(`/article`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },  
-        body: JSON.stringify({ article: articleData}),
+        body:  JSON.stringify({
+            _csrf : csrf, 
+           article : articleData
+        }), 
       })
         .then((response) => {
-          if (response.ok) {
-            return response.json();
-          } else {
-            throw new Error('Failed to store the article');
-          }
+            console.log(response);
+            if (response.status == 201) {
+                window.location.href = "http://127.0.0.1:3000/dashboard"; 
+            } 
         })
         .then((data) => {
           // Handle the response from the server as needed
           console.log('Article stored successfully:', data);
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+        });
+}
+
+function collectAndUpdate(csrf,id){
+    let title = document.getElementById('article-title');
+    let category = document.getElementById('article-category');
+    let cover = document.querySelector('.article-cover');
+    let catId = category.getAttribute('data-id');
+    let article = {
+        id: parseInt(id),
+        title : title.value,
+        category : catId != 0 ? catId : '',
+        new_category : catId == 0 ? category.value : '',
+        cover : cover?.src  ? cover.src : '',
+        items: []
+    }
+    let elements = document.querySelectorAll('.article-content');
+    console.log(elements);
+    elements.forEach(element =>{
+        if(element.value || element.tagName === 'IMG'){
+            let object = {};
+            let name = element.name;
+            console.log(name , element.src ? element.src : 'not image');
+            switch(name){
+                case 'paragraph':
+                    object.type= 'paragraph';
+                    object.content = element.value;
+                    break;
+                case 'header1':
+                    object.type= 'header1';
+                    object.content = element.value;
+                    break;
+                case 'header2':
+                    object.type= 'header2';
+                    object.content = element.value;
+                    break;
+                case 'header3':
+                    object.type= 'header3';
+                    object.content = element.value;
+                    break;
+                case 'image':
+                    object.type= 'image';
+                    object.content = element.src;
+                    break;
+                case 'listItem':
+                    if(article.items.length && article.items[article.items.length-1].type == 'list'){
+                        article.items[article.items.length-1].items.push(element.value)
+                    }else{
+                        object.type= 'list';
+                        object.items = [element.value];
+                    }
+                    break;
+                default:
+                    break;
+            }
+            if(object.type){
+                article.items.push(object)
+            }
+            
+        }
+    });
+    console.log(article);
+    update(article,csrf);
+}
+
+function update(articleData,csrf){
+    fetch(`/article/${articleData.id}/update`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },  
+        body:  JSON.stringify({
+            _csrf : csrf, 
+           article : articleData
+        }), 
+      })
+        .then((response) => {
+            console.log(response);
+          if (response.status == 201) {
+            window.location.href = "http://127.0.0.1:3000/dashboard";
+            
+          } 
+          
+        })
+        .then((data) => {
+          // Handle the response from the server as needed
+        //   console.log('Article stored successfully:', data);
         })
         .catch((error) => {
           console.error('Error:', error);

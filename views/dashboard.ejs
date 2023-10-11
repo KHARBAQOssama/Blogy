@@ -3,12 +3,18 @@
 </button>
 
 <%- include ("./partials/messages"); %>
+
 <section class="p-5">
     <% switch (page) {
         case 'home':%>
             <%- include('./partials/dashboardElements/home.ejs')%>
             <%break;
-    
+        case 'editArticle':%>
+            <%- include('./editArticle.ejs' ,{article : data.article,categories:data.categories})%>
+            <%break;
+        case 'addArticle':%>
+            <%- include('./addArticle.ejs' ,{categories: data.categories})%>
+            <%break;
         default:
             break;
     } %>

@@ -4,6 +4,7 @@
     <%- include('./partials/navbar.ejs', { user : null, dark : false }) %>
 <%}%>
 
+<%- include('./partials/messages.ejs') %>
 <%- include('./partials/landingTitle.ejs') %>
 <% if(articles){%>
     <%- include('./partials/articles.ejs', { articles: articles}) %>

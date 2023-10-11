@@ -1,4 +1,6 @@
+const { Prisma } = require('@prisma/client');
 const Article = require('../Models/Article');
+const Category = require('../Models/Category');
 const { formatDate } = require('../utils/tools');
 const article = new Article();
 
@@ -40,13 +42,10 @@ class ViewController {
         let articleDetail = await article.getArticle(parseInt(req.params.id));
         articleDetail.createdAt = formatDate(articleDetail.createdAt);
         articleDetail.content = JSON.parse(articleDetail.content);
-        console.log(articleDetail);
         let sideArticles = await article.getSideArticles(articleDetail.Category.id);
         sideArticles.forEach(article=>{
             article.createdAt = formatDate(article.createdAt);
         })
-
-        console.log(sideArticles);
         let user = req.isAuthenticated() ? req.user : null;
         res.render('articleDetails',{ 
             user : user , 
@@ -64,6 +63,37 @@ class ViewController {
                     comments : await article.getCommentsCount(req)
                     }
                 }
+            );
+    }
+
+    async toArticleEdit(req,res){
+        let articleToEdit = await article.getArticle(parseInt(req.params.id));
+        articleToEdit.content = JSON.parse(articleToEdit.content);
+
+        let categories = await Category.getAll();
+        res.render('dashboard',{ 
+            user: req.user, 
+            page : 'editArticle' , 
+            data : 
+                    { 
+                        article : articleToEdit,
+                        categories : categories
+                    },
+            csrfToken : req.csrfToken(),
+            }
+            );
+    }
+    async toArticleAdd(req,res){
+        let categories = await Category.getAll();
+        res.render('dashboard',{ 
+            user: req.user, 
+            page : 'addArticle' , 
+            data : 
+                    { 
+                        categories : categories
+                    },
+            csrfToken : req.csrfToken(),
+            }
             );
     }
 }

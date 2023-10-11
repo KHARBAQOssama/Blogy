@@ -11,19 +11,16 @@ const commentRoutes = require('./Routes/commentRoutes')
 const profileRoutes = require('./Routes/profileRoutes')
 const dashboardRoutes = require('./Routes/dashboardRoutes');
 const passport = require('passport')
-const csrf = require('csurf'); // Import the csurf middleware
-const cookieParser = require('cookie-parser');
 require('./Config/passport')(passport)
 //App
 
-let csrfProtection = csrf({ cookie: true });
 
 
 
 const app = express();
 //App
 
-app.use(cookieParser());
+/*app.use(cookieParser());*/
 app.use(express.static('public'));
 app.use('/js', express.static(__dirname + '/public/assets/js'))
 app.use('/css', express.static(__dirname + '/public/assets/css'))
@@ -52,7 +49,6 @@ app.use(passport.session())
 app.use(flash())
 
 // global variable
-
 app.use((req, res, next)=>{
     res.locals.success_message = req.flash('success_message')
     res.locals.error_message = req.flash('error_message')

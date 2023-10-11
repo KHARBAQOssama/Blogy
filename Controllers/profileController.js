@@ -99,3 +99,20 @@ exports.deleteAccount = async (req, res) => {
         res.redirect('/profile/edit');
     }
 };
+
+exports.loadEditForm =  (req, res)=>{
+    try {
+        const user = req.user;
+        const imageUrl = user.image
+            ? `/img/${user.image}`
+            : '/img/default-profile.png';
+
+        res.render('editProfile', {
+            user: req.user,
+            imageUrl: imageUrl,
+            csrfToken: req.csrfToken(),
+        });
+    } catch (error) {
+        console.error(error);
+    }
+}

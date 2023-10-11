@@ -1,3 +1,4 @@
+const { Prisma } = require('@prisma/client');
 const Article = require('../Models/Article');
 const { formatDate } = require('../utils/tools');
 const article = new Article();
@@ -58,6 +59,36 @@ class ViewController {
             data : { 
                     articles : await article.getUserArticles(req.user.id), 
                     comments : await article.getCommentsCount(req)
+                    }
+                }
+            );
+    }
+
+    async toArticleEdit(req,res){
+        let articleToEdit = await article.getArticle(parseInt(req.params.id));
+        articleToEdit.content = JSON.parse(articleToEdit.content);
+
+        let categories;
+
+        res.render('dashboard',{ 
+            user: req.user, 
+            page : 'editArticle' , 
+            data : 
+                    { 
+                        article : articleToEdit,
+                        categories : categories
+                    }
+                }
+            );
+    }
+    async toArticleAdd(req,res){
+        let categories;
+        res.render('dashboard',{ 
+            user: req.user, 
+            page : 'addArticle' , 
+            data : 
+                    { 
+                        categories : categories
                     }
                 }
             );

@@ -6,5 +6,6 @@ const articleController = new ArticleController();
 
 router.post('/', articleController.create);
 router.post('/:id/delete', articleController.delete);
+router.post('/:id/update', articleController.update);
 
 module.exports = router;

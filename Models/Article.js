@@ -37,6 +37,23 @@ class Article {
         }})
         return article;
     }
+    
+    async update(id){
+        let article = await prisma.article.update({
+            where:{
+                id:id
+            },
+            data: {
+                title :this.title,
+                content :this.content,    
+                cover :this.cover,
+                createdAt :this.createdAt,
+                authorId :this.authorId,
+                CategoryId :this.CategoryId,
+            }
+        })
+        return article;
+    }
 
     async getCount(){
         const count = await prisma.article.count();

@@ -140,3 +140,22 @@ input,textarea{
 tbody .title{
  width: 40ch !important;
 }
+
+button{
+    min-width: max-content;
+}
+.item-addition button:hover{
+    background-color: rgba(128, 128, 128, 0.258) !important;
+
+}
+textarea, input{
+    /* background-color: rgb(235, 235, 235); */
+}
+.categories-container{
+    height: 200px;
+    overflow-y: scroll;
+}
+.removeInputBtn svg{
+    width: 1em;
+    fill: red;
+}

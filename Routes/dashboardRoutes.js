@@ -13,6 +13,6 @@ router.use(cookieParser());
 
 router.get('/', ensureAuthentication,  isAuthor, viewController.toDashboardStatics)
 router.get('/editArticle/:id',ensureAuthentication, csrfProtection,  isAuthor, isArticleOwner, viewController.toArticleEdit)
-router.get('/addArticle',ensureAuthentication,csrfProtection,  isAuthor, isArticleOwner, viewController.toArticleAdd)
+router.get('/addArticle',ensureAuthentication,csrfProtection,  isAuthor, viewController.toArticleAdd)
 
 module.exports = router

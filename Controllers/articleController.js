@@ -25,13 +25,13 @@ class ArticleController {
             }
         }));
         newArticle.items = JSON.stringify(newArticle.items);
-        let article = new Article(newArticle.title,newArticle.items,newArticle.cover,new Date(),1,newArticle.category);
+        let article = new Article(newArticle.title,newArticle.items,newArticle.cover,new Date(), parseInt(req.user.id),newArticle.category);
         article = await article.save();
         console.log(article);
         
         if(article){
             req.flash('success_message', 'Article created successfully');
-            res.redirect('/dashboard');
+            res.status(201).json({ message: `Article stored successfully` });
         }
     }
     async delete(req,res){

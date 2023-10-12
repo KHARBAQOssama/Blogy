@@ -64,7 +64,7 @@ class ArticleController {
             }
         }));
         newArticle.items = JSON.stringify(newArticle.items);
-        let article = new Article(newArticle.title,newArticle.items,newArticle.cover,new Date(),1,newArticle.category);
+        let article = new Article(newArticle.title,newArticle.items,newArticle.cover,new Date(),parseInt(req.user.id),newArticle.category);
         article = await article.update(newArticle.id);
         // console.log(article);
         if(article){

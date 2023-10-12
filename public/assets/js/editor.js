@@ -233,6 +233,10 @@ function collect(csrf){
     let category = document.getElementById('article-category');
     let cover = document.querySelector('.article-cover');
     let catId = category.getAttribute('data-id');
+    if(title == '' || category.value == ''){
+        document.getElementById('message').innerText = "Please fill all the necessary fields"
+        return;
+    }
     let article = {
         title : title.value,
         category : catId != 0 ? catId : '',
@@ -379,6 +383,10 @@ function collectAndUpdate(csrf,id){
     let category = document.getElementById('article-category');
     let cover = document.querySelector('.article-cover');
     let catId = category.getAttribute('data-id');
+    if(title == '' || category.value == ''){
+        document.getElementById('message').innerText = "Please fill all the necessary fields"
+        return;
+    }
     let article = {
         id: parseInt(id),
         title : title.value,

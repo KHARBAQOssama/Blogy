@@ -17,7 +17,7 @@ require('./Config/passport')(passport)
 //App
 
 let csrfProtection = csrf({ cookie: true });
-
+console.log(express.Router());
 
 
 const app = express();

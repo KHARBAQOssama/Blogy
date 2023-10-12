@@ -16,6 +16,7 @@
     </div>
 
     <div class="container">
+        <%- include ("./partials/messages"); %>
 
         
         <form class="Category-form"  action="/categories/new2" method="post">
@@ -23,6 +24,7 @@
             <input type="hidden" name="_csrf" value="<%= csrfToken %>">
        
             <label for="name">Category Name:</label>
+         
             <input type="text" id="name" name="name" required>
             <button class="Category-button" type="submit">Create Category</button>
         </form>

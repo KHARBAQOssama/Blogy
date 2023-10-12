@@ -1,9 +1,10 @@
 const express = require('express')
 const {PrismaClient} = require("@prisma/client");
-const router = express.Router()
+const router = express.Router();
 
 
-const csrf = require('csurf'); // Import the csurf middleware
+
+const csrf = require('csurf'); 
 const cookieParser = require('cookie-parser');
 
 const categoryController = require('../Controllers/categoryController')
